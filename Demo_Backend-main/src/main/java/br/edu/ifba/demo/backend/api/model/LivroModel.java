@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Data
@@ -21,6 +23,8 @@ public class LivroModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_livro")
     private Long id_livro;
+
+    
     
     @Column(name = "titulo", nullable = false)
 	private String titulo;
@@ -34,8 +38,9 @@ public class LivroModel {
     @Column(name = "ano_publicacao", nullable = true)
     private Integer ano_publicacao;
 
-    @Column(name = "genero", nullable = true)
-    private String genero;
+    @ManyToOne
+    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero", nullable = true)
+    private GeneroModel genero;
 
     @Column(name = "isbn", nullable = true)
     private Integer isbn;
