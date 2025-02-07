@@ -9,9 +9,15 @@ import br.edu.ifba.demo.backend.api.model.LivroModel;
 public class LivroMapper {
      public LivroDTO toDTO(LivroModel livroModel) {
         LivroDTO dto = new LivroDTO();
+
         dto.setId_livro(livroModel.getId_livro());
-        dto.setGeneroId(livroModel.getGenero().getId_genero()); 
-        dto.setGeneroNome(livroModel.getGenero().getNome_genero()); 
+        if (livroModel.getGenero() != null) {
+            dto.setGeneroId(livroModel.getGenero().getId_genero());
+            dto.setGeneroNome(livroModel.getGenero().getNome_genero());
+        } else {
+            dto.setGeneroId(null);
+            dto.setGeneroNome(""); // ou simplesmente "", conforme sua necessidade
+        }
         dto.setTitulo(livroModel.getTitulo());
         dto.setAutor(livroModel.getAutor());
         dto.setAno_publicacao(livroModel.getAno_publicacao());

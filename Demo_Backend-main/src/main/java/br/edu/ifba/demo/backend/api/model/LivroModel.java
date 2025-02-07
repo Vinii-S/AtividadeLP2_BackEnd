@@ -36,7 +36,7 @@ public class LivroModel {
     private Integer ano_publicacao;
 
     @ManyToOne
-    @JoinColumn(name = "id_genero")
+    @JoinColumn(name = "id_genero", nullable = true)
     private GeneroModel genero;
 
     @Column(name = "isbn", nullable = true)

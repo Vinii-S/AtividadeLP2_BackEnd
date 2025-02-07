@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.edu.ifba.demo.backend.api.repository.GeneroRepository;
 import br.edu.ifba.demo.backend.api.model.GeneroModel;
 
+
 @RestController
 @RequestMapping("/genero")
 public class GeneroController {
@@ -58,13 +59,11 @@ public class GeneroController {
 
     // Excluir gênero (novo)
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> excluirGenero(@PathVariable Long id) {
-        GeneroModel genero = generoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        genero.setStatus(false); // Marca como inativo
-        generoRepository.save(genero);
-
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> deletarGenero(@PathVariable Long id) {
+        if (generoRepository.existsById(id)) {
+            generoRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
