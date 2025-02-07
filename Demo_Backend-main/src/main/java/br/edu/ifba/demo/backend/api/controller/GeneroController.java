@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import br.edu.ifba.demo.backend.api.repository.GeneroRepository;
 import br.edu.ifba.demo.backend.api.model.GeneroModel;
-
 
 @RestController
 @RequestMapping("/genero")
@@ -40,6 +38,14 @@ public class GeneroController {
     public ResponseEntity<GeneroModel> adicionarGenero(@RequestBody GeneroModel genero) {
         GeneroModel novoGenero = generoRepository.save(genero);
         return new ResponseEntity<>(novoGenero, HttpStatus.CREATED);
+    }
+
+    // Novo endpoint para obter um gênero pelo ID
+    @GetMapping("/{id}")
+    public ResponseEntity<GeneroModel> getById(@PathVariable Long id) {
+        return generoRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     // Atualizar gênero (novo)
