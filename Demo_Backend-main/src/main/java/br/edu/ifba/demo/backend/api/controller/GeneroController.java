@@ -49,7 +49,7 @@ public class GeneroController {
     }
 
     // Atualizar gênero (novo)
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") //
     public ResponseEntity<GeneroModel> atualizarGenero(
             @PathVariable Long id,
             @RequestBody GeneroModel generoAtualizado) {

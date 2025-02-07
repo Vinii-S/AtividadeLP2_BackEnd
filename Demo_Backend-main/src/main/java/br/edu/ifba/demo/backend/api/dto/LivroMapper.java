@@ -16,7 +16,7 @@ public class LivroMapper {
             dto.setGeneroNome(livroModel.getGenero().getNome_genero());
         } else {
             dto.setGeneroId(null);
-            dto.setGeneroNome(""); // ou simplesmente "", conforme sua necessidade
+            dto.setGeneroNome("");
         }
         dto.setTitulo(livroModel.getTitulo());
         dto.setAutor(livroModel.getAutor());
