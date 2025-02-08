@@ -26,14 +26,14 @@ public class GeneroController {
         this.generoRepository = generoRepository;
     }
 
-    // Método que retornar todos os generos do banco de dados
-    // Listar todos os gêneros (já existente)
+
+    // Listar todos os gêneros 
     @GetMapping("/listall")
     public List<GeneroModel> listall() {
         return generoRepository.findAll();
     }
 
-    // Criar novo gênero (já existente)
+    // Criar novo gênero 
     @PostMapping
     public ResponseEntity<GeneroModel> adicionarGenero(@RequestBody GeneroModel genero) {
         GeneroModel novoGenero = generoRepository.save(genero);
@@ -48,7 +48,7 @@ public class GeneroController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Atualizar gênero (novo)
+    // Atualizar gênero
     @PutMapping("/{id}") //
     public ResponseEntity<GeneroModel> atualizarGenero(
             @PathVariable Long id,
@@ -63,7 +63,7 @@ public class GeneroController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Excluir gênero (novo)
+    // Excluir gênero 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarGenero(@PathVariable Long id) {
         if (generoRepository.existsById(id)) {
